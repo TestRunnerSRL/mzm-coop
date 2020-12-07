@@ -4,11 +4,11 @@ bizhawk-co-op is a Lua script for BizHawk that allows two or more people to play
 
 ## Metroid: Zero Mission Co-op
 
-Health and ammo is shared. Items obtained by a player are given to everyone. Items locations are split such that each item can be optained by only one player. The other players will find a screw attack block in its place. The items at the unknown item locations, power grip location, and imago location can be obtained by either player. Events such as boss deaths are also shared.
+Health and ammo is shared. Items obtained by a player are given to everyone. Items locations are split such that each item can be obtained by only one player. The other players will find a screw attack block in its place. The items at the unknown item locations, power grip location, and imago location can be obtained by either player. Events such as boss deaths are also shared.
 
 ## Link to the Past Co-op
 
-Items obtained by a player are given to everyone. Items locations are split such that each item can be optained by only one player. It's usually a good idea to spread out on the overworld and communicate which items still need to be checked by who. With Split Keys or Raid Bosses enabled, it's highly recommended to enter dungeons together. The following can are configurable:
+Items obtained by a player are given to everyone. Items locations are split such that each item can be obtained by only one player. It's usually a good idea to spread out on the overworld and communicate which items still need to be checked by who. With Split Keys or Raid Bosses enabled, it's highly recommended to enter dungeons together. The following can are configurable:
  
 * **Health and Ammo** Health and ammo is shared. This includes bottles, bombs, arrows, magic, etc. Death is synced, so if you notice a pause, it's because the script is waiting for everyone to die together
 * **Split Big Keys** If enabled then dungeon Big Keys will be split so only one person can obtain it. Otherwise either player can get them.
@@ -33,7 +33,19 @@ Nothing is shared, however there are now player specific items which are mixed b
 This works with the latest OoT Randomizer found on the website [https://www.ootrandomizer.com](https://www.ootrandomizer.com/) and the latest major release of the source code [GitHub](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/master). Set the Player Count to the number and use the same settings and seed. Each player should then set a unique Player ID (from 1 to the Player Count). The output filename should be the **same** for every player except the last number which indicates the player ID (excluding `-comp`). The logic will guarantee that every player can beat the game.  
 * **2-Player File name example:** 
 > - `OoT_R4AR3PKKPKF8UK7DSA_TestSeed_W2P1-comp.z64`
-> - `OoT_R4AR3PKKPKF8UK7DSA_TestSeed_W2P2-comp.z64` 
+> - `OoT_R4AR3PKKPKF8UK7DSA_TestSeed_W2P2-comp.z64`
+
+## Link's Awakening DX Co-op
+
+Items obtained by a player are given to everyone. Unlike the Link to the Past Co-op, however, items are not split such that each item
+may only be obtained by one player. Any player may obtain any item.
+
+Additional Options:
+* **Ammo** Players' power, bomb, and arrow counts will all be synchronized
+* **Health** Any health pickups or damage taken will be applied to all players
+* **Rupees** Any rupees found or spend will be applied to all players
+* **Messages** Default/Verbose. Default is fine for most players. Verbose adds extra logging to the status window for debugging purposes.
+
 
 ## Setup
 There are two different methods to install.

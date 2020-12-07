@@ -341,7 +341,7 @@ while 1 do
 			local status, err = coroutine.resume(k)
 			if (status == false) then
 				if (err ~= nil) then
-					printOutput("Error during " .. v .. ": " .. err)
+					printOutput("Error during " .. v .. ": " .. tostring(err))
 				else
 					printOutput("Error during " .. v .. ": No error message")
 				end
