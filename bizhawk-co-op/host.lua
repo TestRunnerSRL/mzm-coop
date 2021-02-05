@@ -101,6 +101,9 @@ function host.start()
 	local ip, setport = server:getsockname()
 	server:settimeout(0) -- non-blocking
 	printOutput("Created server on port " .. setport)
+	printOutput('Dedicated server options:' ..
+			' --itemcount=' .. itemcount ..
+			' --ramconfig=' .. tabletostring(config.ramconfig))
 
 	local roomstr, err = http.request('https://us-central1-mzm-coop.cloudfunctions.net/create' ..
 			'?user=' .. config.user ..
