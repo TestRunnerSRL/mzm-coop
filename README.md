@@ -48,7 +48,6 @@ There are two different methods to install.
 * (2) [BizHawk prerequisite installer](https://github.com/TASVideos/BizHawk-Prereqs/releases/tag/2.1) (run this)
 * (3) [luasocket](http://files.luaforge.net/releases/luasocket/luasocket/luasocket-2.0.2/luasocket-2.0.2-lua-5.1.2-Win32-vc8.zip)
 * (4) [bizhawk-co-op](https://github.com/TestRunnerSRL/bizhawk-co-op/releases)  
-> - **If you are running <ins>OoTR 3.0 Release</ins>, replace the file, `bizhawk-co-op/ramcontroller/Ocarina of Time.lua` with this version of the file:** [bizhawk-co-op/ramcontroller/Ocarina of Time.lua](https://github.com/TestRunnerSRL/bizhawk-co-op/raw/9e73e90eae6d5ef82cca96a9f3e6a235abbaf906/bizhawk-co-op/ramcontroller/Ocarina%20of%20Time.lua)  
 
 ### Directory structure
 
