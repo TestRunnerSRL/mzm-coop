@@ -7,7 +7,7 @@ mkdir BizHawk-2.6.1
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 #Download Bizhawk
-$url = "https://github.com/TASVideos/BizHawk/releases/download/2.6.1/BizHawk-2.6.1.zip"
+$url = "https://github.com/TASVideos/BizHawk/releases/download/2.6.1/BizHawk-2.6.1-win-x64.zip"
 $filename = "bizHawk-2.6.1.zip"
 Invoke-WebRequest -Uri $url -OutFile $filename
 #Unzip
