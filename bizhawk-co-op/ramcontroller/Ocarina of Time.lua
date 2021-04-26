@@ -1,3 +1,4 @@
+-- romname: OoTR
 
 console.log('------------------')
 local old_global_metatable = getmetatable(_G)

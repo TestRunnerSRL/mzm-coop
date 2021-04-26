@@ -223,15 +223,37 @@ function leaveRoom()
 end
 
 
---Returns a list of files in a given directory
+--Returns a list of files in a given directory in case-insensitive sorted order
 function os.dir(dir)
 	local files = {}
-	local f = assert(io.popen('dir \"' .. dir .. '\" /b ', 'r'))
+	local f = assert(io.popen('dir \"' .. dir .. '\" /b /on', 'r'))
 	for file in f:lines() do
 		table.insert(files, file)
 	end
 	f:close()
 	return files
+end
+
+
+--Returns a list of ramcontrollers and the 1-based index of the ramcontroller
+--that matches the current ROM. Returns a nil index if none match.
+--
+--Ramcontrollers may start with the comment '-- romname: <pattern>' to indicate
+--what romnames the ramcontroller supports. '<pattern>' should be a valid Lua
+--pattern, and is partially matched agains the romname.
+function getRamControllers(dir)
+	local prefix = '-- romname: '
+	local romname = gameinfo.getromname()
+	local files = os.dir(dir)
+	for i, file in ipairs(files) do
+		local f = assert(io.open(dir .. '\\' .. file))
+		local line = f:read('*l')
+		f:close()
+		if line:sub(1, #prefix) == prefix and string.match(romname, line:sub(#prefix + 1)) then
+			return files, i
+		end
+	end
+	return files, nil
 end
 
 
@@ -270,7 +292,12 @@ txtUser = forms.textbox(mainform, "", 200, 20, nil, 80, 64, false, false)
 txtPass = forms.textbox(mainform, "", 200, 20, nil, 80, 88, false, false)
 formPlayerNumber = forms.textbox(mainform, "", 200, 20, nil, 80, 114, false, false)
 txtPort = forms.textbox(mainform, '50000', 200, 20, nil, 80, 138, false, false)
-ddRamCode = forms.dropdown(mainform, os.dir("bizhawk-co-op\\ramcontroller"), 80, 162, 200, 10)
+local ramCodes, defaultRamCodeIndex = getRamControllers("bizhawk-co-op\\ramcontroller")
+ddRamCode = forms.dropdown(mainform, ramCodes, 80, 162, 200, 10)
+if defaultRamCodeIndex then
+	-- SelectedIndex is 0-based.
+	forms.setproperty(ddRamCode, "SelectedIndex", defaultRamCodeIndex - 1)
+end
 lblIP = forms.label(mainform, "Host IP:", 32, 42)
 lblUser = forms.label(mainform, "Username:", 19, 66)
 lblPass = forms.label(mainform, "Password:", 21, 90)

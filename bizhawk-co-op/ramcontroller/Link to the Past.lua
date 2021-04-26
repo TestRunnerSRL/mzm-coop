@@ -1,3 +1,5 @@
+-- romname: Legend of Zelda, The [-] A Link to the Past
+
 local items = {
 	[0x5A] = 'Nothing',
 	[0x49] = 'Fighters Sword',

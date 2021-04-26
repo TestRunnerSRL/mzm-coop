@@ -1,3 +1,5 @@
+-- romname: Metroid [-] Zero Mission
+
 -- Mapping for the flags of each ability (little endian)
 local AbilityMap = {
 	--longbeam = 0
