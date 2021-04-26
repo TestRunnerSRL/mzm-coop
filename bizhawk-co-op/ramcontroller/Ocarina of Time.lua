@@ -10,9 +10,22 @@ local function declare (name, initval)
 	rawset(_G, name, initval or false)
 end
 
+-- Expect a minimum of 4MB RAM
+local EXPECTED_MEMORY_SIZE_MIN = 0x400000
+
 local oot = require('bizhawk-co-op\\helpers\\oot')
 
 local oot_rom = {}
+
+if (gameinfo.getromname() == "Null") then
+	setmetatable(_G, old_global_metatable)
+	error("The OoT ROM needs to be loaded prior to hosting/joining a room")
+end
+
+if (mainmemory.getcurrentmemorydomainsize() < EXPECTED_MEMORY_SIZE_MIN) then
+	setmetatable(_G, old_global_metatable)
+	error("Unexpected main memory size. Did you load a ROM from another console?")
+end
 
 local rando_context = mainmemory.read_u32_be(0x1C6E90 + 0x15D4) - 0x80000000
 if (rando_context == 0) then
