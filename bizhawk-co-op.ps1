@@ -2,22 +2,22 @@
 
 $shell_app=new-object -com shell.application
 
-mkdir BizHawk-2.3
+mkdir BizHawk-2.6.2
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 #Download Bizhawk
-$url = "https://github.com/TASVideos/BizHawk/releases/download/2.3/BizHawk-2.3.zip"
-$filename = "bizHawk-2.3.zip"
+$url = "https://github.com/TASVideos/BizHawk/releases/download/2.6.2/BizHawk-2.6.2-win-x64.zip"
+$filename = "bizHawk-2.6.2.zip"
 Invoke-WebRequest -Uri $url -OutFile $filename
 #Unzip
 $zip_file = $shell_app.namespace((Get-Location).Path + "\$filename")
-$destination = $shell_app.namespace((Get-Location).Path + "\BizHawk-2.3")
+$destination = $shell_app.namespace((Get-Location).Path + "\BizHawk-2.6.2")
 $destination.Copyhere($zip_file.items())
 Remove-Item $filename
 
 #Download prereq
-$url = "https://github.com/TASVideos/BizHawk-Prereqs/releases/download/2.1/bizhawk_prereqs_v2.1.zip"
+$url = "https://github.com/TASVideos/BizHawk-Prereqs/releases/download/2.4.8_1/bizhawk_prereqs_v2.4.8_1.zip"
 $filename = "bizprereq.zip"
 Invoke-WebRequest -Uri $url -OutFile $filename
 #unzip prereq
@@ -48,13 +48,13 @@ $destination.Copyhere($zip_file.items())
 Remove-Item $filename
 
 #Copy files into Bizhawk
-Move-Item -Path .\bizhawk-co-op-dev\* -Destination .\BizHawk-2.3\
+Move-Item -Path .\bizhawk-co-op-dev\* -Destination .\BizHawk-2.6.2\
 Remove-Item .\bizhawk-co-op-dev -Recurse
 
-Move-Item -Path .\luasocket\mime -Destination .\BizHawk-2.3\
-Move-Item -Path .\luasocket\socket -Destination .\BizHawk-2.3\
-Move-Item -Path .\luasocket\lua\* -Destination .\BizHawk-2.3\Lua\
-Move-Item -Path .\luasocket\lua5.1.dll -Destination .\BizHawk-2.3\dll\
+Move-Item -Path .\luasocket\mime -Destination .\BizHawk-2.6.2\
+Move-Item -Path .\luasocket\socket -Destination .\BizHawk-2.6.2\
+Move-Item -Path .\luasocket\lua\* -Destination .\BizHawk-2.6.2\Lua\
+Move-Item -Path .\luasocket\lua5.1.dll -Destination .\BizHawk-2.6.2\dll\
 Remove-Item .\luasocket -Recurse
 
 Start-Process .\bizhawk_prereqs.exe -Wait
